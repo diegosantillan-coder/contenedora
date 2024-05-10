@@ -1,0 +1,88 @@
+@import '../../../../assets/scss/main';
+
+.header {
+  background: #2D6DF6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  &__logo {
+    max-width: 5rem;
+  }
+
+  &__button {
+    display: block;
+    justify-self: end;
+  }
+
+  &__nav {
+    position: absolute;
+    background: #ffff;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem;
+
+    &--hidden {
+       opacity: 0;
+       visibility: hidden;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+
+    &__nav-list {
+      display: grid;
+      list-style-type: none;
+      flex-direction: column;
+      align-items: start;
+      gap: 2rem;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      li a {
+        text-decoration: none;
+        color: #2D6DF6;
+        font-weight: 700;
+        }
+    }
+
+    &__arrow-forward {
+      &--visible {
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    @include from($medium) {
+
+      &__button {
+        display: none;
+      }
+
+      &__nav {
+        display: block;
+        position: relative;
+        background: #2D6DF6;
+        opacity: 1;
+        visibility: visible;
+          li a {
+            color: #ffff;
+        }
+      }
+
+      &__nav-list {
+         display: flex;
+        flex-direction: row;
+        }
+    }
+}

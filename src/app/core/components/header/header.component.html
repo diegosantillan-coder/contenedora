@@ -1,0 +1,35 @@
+<header class="header">
+  <img class="header__logo" src="assets/images/svg/logo-sura.svg" alt="sura">
+  <a class="header__button" (click)="menuEsVisible=!menuEsVisible"><img src="assets/icons/menu.svg" alt=""> </a>
+  <nav class="header__nav" [ngClass]="{'header__nav--visible':menuEsVisible,
+                   'header__nav--hidden': !menuEsVisible}" >
+    <ul class="header__nav-list">
+      <li  class="header__button" (click)="menuEsVisible=!menuEsVisible">
+        <a>
+          <img src="assets/icons/close.svg" alt="">
+        </a>
+      </li>
+
+      <ng-container *ngFor="let menuItem of menuItems; let i = index">
+        <li *ngIf="!menuItem.subMenu">
+          <a href="#"> {{ menuItem.label }} </a>
+        </li>
+        <li *ngIf="menuItem.subMenu" (click)="toggleSubMenu(i)">
+          <a href="#"> {{ menuItem.label }} </a>
+          <img
+          [ngClass]="{'header__arrow-forward--visible': expandedMenuItems[i]}"
+          src="assets/icons/arrow-forward.svg" alt="">
+          <img
+          [ngClass]="{'header__arrow-forward--visible': !expandedMenuItems[i]}"
+          src="assets/icons/arrow-down.svg" alt="">
+        </li>
+        <ul class="header__nav-list submenu" *ngIf="expandedMenuItems[i]">
+          <li *ngFor="let subMenuItem of menuItem.subMenu">
+            <a [href]="subMenuItem.link">{{ subMenuItem.label }}</a>
+          </li>
+        </ul>
+      </ng-container>
+
+    </ul>
+  </nav>
+</header>
